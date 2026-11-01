@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+.env
+.pytest_cache
+__pycache__
+*.py[cod]
+*.egg-info
+.coverage
+htmlcov
+tests
+.DS_Store
+*.pages
