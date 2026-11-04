@@ -27,3 +27,5 @@ htmlcov/
 *.tfstate.*
 *.tfplan
 crash.log
+
+task-management-api.pages
