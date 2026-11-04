@@ -1,14 +1,14 @@
 # Cloud-Native Task Management API
 
-A production-style REST API for managing personal tasks. The project combines a
+A REST API for managing personal tasks. The project combines a
 FastAPI application, PostgreSQL persistence, JWT authentication, automated
 testing, containerization, continuous integration, and Terraform-managed Azure
 infrastructure.
 
-> **Deployment status:** the API is complete and runs locally with Docker. The
+<!-- > **Deployment status:** the API is complete and runs locally with Docker. The
 > Azure infrastructure is defined and validated with Terraform, but it has not
 > yet been provisioned. This avoids cloud charges while an Azure student
-> subscription is pending.
+> subscription is pending. -->
 
 ## Features
 
@@ -47,7 +47,7 @@ flowchart LR
     App -->|TLS connection| DB[(Azure Database for PostgreSQL)]
     App --> Logs[Log Analytics]
     GHA[GitHub Actions] -->|test and validate| Repo[Application + Terraform]
-    TF[Terraform] -.->|provisions after student subscription is active| Azure[Azure resources]
+    TF[Terraform] -.->|provisions| Azure[Azure resources]
 ```
 
 For local development, Docker Compose runs the same API alongside a PostgreSQL
@@ -73,7 +73,7 @@ Client -> FastAPI/Uvicorn container -> SQLAlchemy -> Psycopg -> PostgreSQL
 Task status values are `todo`, `in_progress`, and `done`. Priority values are
 `low`, `medium`, and `high`.
 
-## Project Structure
+<!-- ## Project Structure
 
 ```text
 .
@@ -109,7 +109,7 @@ Task status values are `todo`, `in_progress`, and `done`. Priority values are
 ├── compose.yaml
 ├── Dockerfile
 └── pyproject.toml
-```
+``` -->
 
 ## Configuration
 
@@ -264,10 +264,10 @@ alembic -c alembic.ini revision --autogenerate -m "describe the change"
 
 ## Terraform Validation
 
-Terraform currently defines the following Azure resources without provisioning
-them:
+<!-- Terraform currently defines the following Azure resources without provisioning
+them: -->
 
-- Resource group and consistent project tags
+- Resource group and project tags
 - Azure Container Registry using the Basic SKU
 - Log Analytics workspace with a daily ingestion cap
 - Azure Container Apps environment
@@ -284,10 +284,10 @@ terraform -chdir=infra fmt -check -recursive
 terraform -chdir=infra validate
 ```
 
-Do not run `terraform apply` until an Azure subscription and cost controls are
+<!-- Do not run `terraform apply` until an Azure subscription and cost controls are
 ready. The PostgreSQL server and container registry can consume credit while
 provisioned. Terraform state can contain generated secrets and must never be
-committed.
+committed. -->
 
 ## Continuous Integration
 
@@ -299,8 +299,8 @@ The GitHub Actions workflow runs on pushes and pull requests to `main`:
 4. Builds the production Docker image.
 5. Checks Terraform formatting and validates the infrastructure configuration.
 
-The workflow has read-only repository permissions and no Azure credentials, so
-it validates infrastructure without deploying it.
+<!-- The workflow has read-only repository permissions and no Azure credentials, so
+it validates infrastructure without deploying it. -->
 
 ## Security Decisions
 
@@ -313,7 +313,7 @@ it validates infrastructure without deploying it.
 - ACR admin credentials are disabled in favor of managed identity.
 - Azure database connections require TLS.
 - Application secrets are excluded from API responses and source control.
-
+<!-- 
 ## Current Status
 
 - [x] REST API and validation
@@ -327,4 +327,4 @@ it validates infrastructure without deploying it.
 - [ ] Provision Azure resources
 - [ ] Push the Docker image to ACR and verify the public HTTPS deployment
 
-This project is intended for learning and portfolio demonstration.
+This project is intended for learning and portfolio demonstration. -->
